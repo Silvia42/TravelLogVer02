@@ -40,7 +40,7 @@
 ## Links related to this project:
 
 <ul>
-<li><a href="https://github.com/Silvia42/CodeBank/projects/1">Project Board</a></li>
+<li><a href="https://github.com/Silvia42/TravelLog/projects/1">Project Board</a></li>
 
 <li><a href="https://mycodebank.herokuapp.com">Travel Log Bank on Heroku</a></li>
 
