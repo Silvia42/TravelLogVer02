@@ -15,8 +15,6 @@ class Trip(models.Model):
     tripDate = models.DateField(null=True)
     user     = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     place    = models.ForeignKey(User, on_delete=models.CASCADE, related_name='places')
-
-    
     
 # ###########
 # status      = models.BooleanField()  # open / closed
