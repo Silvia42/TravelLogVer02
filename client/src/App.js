@@ -25,16 +25,53 @@ const placesList = (places) => (
   </ul>
 )
 
-const newUserForm = () => (
-  <form>
-    <input type="text"     name="userName"  value="" placeholder="User Name"/>
-    <input type="email"    name="email"     value="" placeholder="Email"/>
+const saveUserToServer = (newUser) => 
+  fetch('/api/user/',
+    { method  : "POST"
+    , headers : { "Content-Type": "application/json" }
+    , body    : JSON.stringify(newUser)
+    }
+  ).then(res => res.json())
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// class NewUserForm  //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+class NewUserForm extends React.Component {
+
+  state = 
+  { userName: ""
+  , email   : ""
+  }
+
+  handleInput = (evnt) => {
+    let newUser = {...this.state};
+    newUser[evnt.target.name] = evnt.target.value;
+    this.setState(newUser)
+  }
+
+  handleSubmit = (evnt) => {
+    evnt.preventDefault();
+    console.log('User was submitted',this.state)
+    this.props.addNewUser(this.state)
+    this.setState({ userName: "", email: ""})
+  }
+
+  render = () => (
+  <form onSubmit={this.handleSubmit}>
+    <input type="text"     name="userName"  onChange={this.handleInput} value={this.state.username} placeholder="User Name"/>
+    <input type="email"    name="email"     onChange={this.handleInput} value={this.state.email}    placeholder="Email"/>
     <input type="password" name="password1" value="" placeholder="Password"/>
     <input type="password" name="password2" value="" placeholder="Verify password"/>
     <input type="submit"                    value="Sign Up" />
   </form>
-)
+  )
+}
+//////////////////////// END OF class NewUserForm  /////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// class App  //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class App extends React.Component {
 
   state = {
@@ -42,6 +79,21 @@ class App extends React.Component {
     users: testUsers
   }
   
+  addNewUser = (newUserInfo) => {
+    newUserInfo=    {
+        "userName": newUserInfo.userName,
+        "email": newUserInfo.email,
+    } 
+    console.log(newUserInfo)  
+    saveUserToServer(newUserInfo)
+      .then(newUser => {
+        console.log(newUser);
+        let users = {...this.state.users};
+        users[newUser.id] = newUser;
+        this.setState({ users, currentUser: newUser.id });
+    })
+  }
+
   render = () => (
   <div>
     <div className="topPageInfo">
@@ -58,7 +110,8 @@ class App extends React.Component {
 
       <div className="userCorner">
         {/* {userInfo(testUsers[0])} */}
-        {newUserForm()}
+        {/* {newUserForm()} */}
+        <NewUserForm addNewUser={this.addNewUser}/>
         {/* {newPlaceForm()} */}
         {/* {newTripForm()} */}
       </div>
@@ -75,3 +128,5 @@ class App extends React.Component {
 }
 
 export default App;
+/////////////////////////  END OF class App  ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////

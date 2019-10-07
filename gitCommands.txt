@@ -10,7 +10,7 @@ git add client/public/
 
 git status
 
-git commit -m "django server is running"
+git commit -m "E pur si muove"
 
 git push origin master
 
