@@ -1,0 +1,19 @@
+cd /Users/silviakocsisovaCB5/Desktop/SEI/MyProjects/004.TravelLog/travellog
+
+git add travellog/
+git add travellogApp/
+git rm -r travellog/__pycache__/  --cache
+git rm -r travellogApp/__pycache__/  --cache
+git add client/src/
+git add client/package.json
+git add client/public/
+
+git status
+
+git commit -m "django server is running"
+
+git push origin master
+
+
+
+

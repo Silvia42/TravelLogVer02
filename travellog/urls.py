@@ -26,3 +26,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^.*$', views.FrontendAppView.as_view())
 ]
+
