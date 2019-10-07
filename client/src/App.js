@@ -41,7 +41,8 @@ class NewUserForm extends React.Component {
   state = 
   { userName: ""
   , email   : ""
-  , password: "asdf"
+  , password1: ""
+  , password2: ""
   }
 
   handleInput = (evnt) => {
@@ -53,16 +54,22 @@ class NewUserForm extends React.Component {
   handleSubmit = (evnt) => {
     evnt.preventDefault();
     console.log('User was submitted',this.state)
-    this.props.addNewUser(this.state)
-    this.setState({ userName: "", email: ""})
+    if (this.state.password1===this.state.password2) {
+      this.props.addNewUser({userName:this.state.userName,email:this.state.email,password:this.state.password1})
+      this.setState({ userName: "", email: "", password1: "",password2: ""})
+    } else {
+      alert("Both passwords must be identical!!!")
+      this.setState({ password1: "",password2: ""})
+    }
+    
   }
 
   render = () => (
   <form onSubmit={this.handleSubmit}>
-    <input type="text"     name="userName"  onChange={this.handleInput} value={this.state.username} placeholder="User Name"/>
+    <input type="text"     name="userName"  onChange={this.handleInput} value={this.state.userName} placeholder="User Name"/>
     <input type="email"    name="email"     onChange={this.handleInput} value={this.state.email}    placeholder="Email"/>
-    <input type="password" name="password1" value="" placeholder="Password"/>
-    <input type="password" name="password2" value="" placeholder="Verify password"/>
+    <input type="password" name="password1" onChange={this.handleInput} value={this.state.password1}  placeholder="Password"/>
+    <input type="password" name="password2" onChange={this.handleInput} value={this.state.password2}  placeholder="Verify password"/>
     <input type="submit"                    value="Sign Up" />
   </form>
   )
@@ -76,7 +83,7 @@ class NewUserForm extends React.Component {
 class App extends React.Component {
 
   state = {
-    currentUser: 1
+    currentUser: 0 // Nobody is Signed In
     // , users: testUsers
   }
   
@@ -86,10 +93,10 @@ class App extends React.Component {
         , "email": newUserInfo.email
         , "password": newUserInfo.password
     } 
-    console.log('before saveUserToServer',newUserInfo)  
+    // console.log('before saveUserToServer',newUserInfo)  
     saveUserToServer(newUserInfo)
       .then(newUser => {
-        console.log(newUser);
+        // console.log(newUser);
         // let users = {...this.state.users};
         // users[newUser.id] = newUser;
         // this.setState({ users, currentUser: newUser.id });
