@@ -7,23 +7,29 @@
   flex-direction: row;
   /* flex-wrap: wrap; */
 }
-
+.globe {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 .dataArea {
-  background-color: blue;
+  background-color: black;
   width: 80vw;
+  color: wheat;
   /* display: flex; */
   /* flex-direction: row; */
   /* flex-wrap: wrap; */
 }
 
 .userCorner {
-  background-color: violet;
+  background-color: blue;
   width: 20vw;
 
 }
 
 .mapContainer {
-  background-color: aqua;
+  background-color: white;
   width: 100vw;
   height: 80vh;
 }

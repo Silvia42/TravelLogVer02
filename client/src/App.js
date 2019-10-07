@@ -35,9 +35,22 @@ const newUserForm = () => (
   </form>
 )
 
-const App = () => (
+class App extends React.Component {
+
+  state = {
+    currentUser: 1,
+    users: testUsers
+  }
+  
+  render = () => (
   <div>
     <div className="topPageInfo">
+
+      <div className="globe">
+        <img src={require("./images/globe001.gif")} alt="Globe" width="80"/>
+      </div>
+
+      {/* <img src={require('/images/image-name.png')} /> */}
 
       <div className="dataArea">
         {placesList(testPlaces)}
@@ -53,9 +66,12 @@ const App = () => (
     </div>
 
     <div className="mapContainer">
-    Placefor big MAP
+    Place for big MAP
+      {/* <img src={require("./images/choroplethUSA.png")} alt="Globe" width="100%"/> */}
+      <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/>
     </div>
   </div>
-)
+  )
+}
 
 export default App;
