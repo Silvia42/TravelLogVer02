@@ -41,6 +41,7 @@ class NewUserForm extends React.Component {
   state = 
   { userName: ""
   , email   : ""
+  , password: "asdf"
   }
 
   handleInput = (evnt) => {
@@ -75,22 +76,23 @@ class NewUserForm extends React.Component {
 class App extends React.Component {
 
   state = {
-    currentUser: 1,
-    users: testUsers
+    currentUser: 1
+    // , users: testUsers
   }
   
   addNewUser = (newUserInfo) => {
     newUserInfo=    {
-        "userName": newUserInfo.userName,
-        "email": newUserInfo.email,
+        "userName": newUserInfo.userName
+        , "email": newUserInfo.email
+        , "password": newUserInfo.password
     } 
-    console.log(newUserInfo)  
+    console.log('before saveUserToServer',newUserInfo)  
     saveUserToServer(newUserInfo)
       .then(newUser => {
         console.log(newUser);
-        let users = {...this.state.users};
-        users[newUser.id] = newUser;
-        this.setState({ users, currentUser: newUser.id });
+        // let users = {...this.state.users};
+        // users[newUser.id] = newUser;
+        // this.setState({ users, currentUser: newUser.id });
     })
   }
 
