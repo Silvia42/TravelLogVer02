@@ -7,9 +7,9 @@ class User(models.Model):
     password = models.CharField(max_length=30)  
 
 class Place(models.Model):
-    placeName = models.CharField(max_length=30)  
+    placeName = models.CharField(max_length=50)  
     description = models.CharField(max_length=300)
-    placeImageUrl = models.CharField(max_length=30) 
+    #placeImageUrl = models.CharField(max_length=30) 
 
 class Trip(models.Model):
     tripDate = models.DateField(null=True)

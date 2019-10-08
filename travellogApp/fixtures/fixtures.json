@@ -1,0 +1,20 @@
+[
+    {
+        "model": "travellogApp.Place",
+        "pk": 1,
+        "fields": {
+            "placeName": "Afghanistan",
+            "description": "some description",
+            "placeImageUrl": "someURL"
+        }
+    },
+    {
+        "model": "travellogApp.Place",
+        "pk": 2,
+        "fields": {
+            "placeName": "Albania",
+            "description": "some description 2",
+            "placeImageUrl": "someURL2"
+        }
+    }
+]

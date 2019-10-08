@@ -7,6 +7,10 @@ git rm -r travellogApp/__pycache__/  --cache
 git add client/src/
 git add client/package.json
 git add client/public/
+git add readme.md 
+git add Documentation/
+git add HelperPrograms/
+git add gitCommands.txt 
 
 git status
 

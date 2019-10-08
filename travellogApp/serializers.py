@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PlaceSerializer(serializers.ModelSerializer):  
     class Meta:     
         model = Place   
-        fields = ['id', 'placeName','description', 'placeImageUrl']
+        fields = ['id', 'placeName','description']
 
 class TripSerializer(serializers.ModelSerializer):  
     class Meta:     
