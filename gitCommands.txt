@@ -20,4 +20,5 @@ git push origin master
 
 
 
-
+course-material/project-4/rubric.md
+You must meet all of the following requirements to pass project 3.
