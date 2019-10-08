@@ -134,3 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, 'build', 'static')
 ]
 
+# define fixtures dir
+# FIXTURE_DIRS = (
+#    '/travellogApp/fixtures/',
+# )

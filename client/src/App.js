@@ -53,7 +53,7 @@ class NewUserForm extends React.Component {
 
   handleSubmit = (evnt) => {
     evnt.preventDefault();
-    console.log('User was submitted',this.state)
+    // console.log('User was submitted',this.state)
     if (this.state.password1===this.state.password2) {
       this.props.addNewUser({userName:this.state.userName,email:this.state.email,password:this.state.password1})
       this.setState({ userName: "", email: "", password1: "",password2: ""})
@@ -83,8 +83,21 @@ class NewUserForm extends React.Component {
 class App extends React.Component {
 
   state = {
-    currentUser: 0 // Nobody is Signed In
-    // , users: testUsers
+      currentUserId: 0 // Nobody is Signed In
+    , currentUserName:''
+    , currentUserEmail:''
+    , places: [
+      { placeName:''
+       ,description:''
+       ,placeImageUrl:''
+      }
+    ]
+    , trips: [
+      { tripDate:''
+       ,userId:''
+       ,placeId:''
+      }
+    ]
   }
   
   addNewUser = (newUserInfo) => {
