@@ -11,21 +11,14 @@ from django.http import HttpResponse
 
 from rest_framework.decorators import action
 
+# path("login", views.get_user),
 def get_user(request, pk=None):
-    #queryset = User.objects.all()
-    #serializer = UserSerializer(data=request.data)
-    print('This is login request')
-    # print('GET: ' , HttpRequest.GET)
-    # print('body: ', HttpRequest.body)
-    # if serializer.is_valid():
-    #     return self.get_response(queryset)
-    # else:
-    #     return Response(serializer.errors,
-    #                     status=status.HTTP_400_BAD_REQUEST)
+    # print('This is login request')
     now = datetime.datetime.now()
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)    
 
+# path("username/<str:name>/", views.get_userbyname),
 def get_userbyname(request, name):
     #b=request.path
     #queryset = User.objects.filter(userName='aaa')
@@ -36,24 +29,26 @@ def get_userbyname(request, name):
     print(f'I am looking for user by username {name}')
     print(f'I found {json}')
 
-    return HttpResponse(json)                                                            
+    return HttpResponse(json)     
+
+
+# path("tripbyuserid/<int:userid>/", views.get_tripbyuserid),  
+def get_tripbyuserid(request, userid):
+    queryset = Trip.objects.filter(user=userid)
+    json = JSONRenderer().render(UserSerializer(queryset, many=True).data)
+    #serializer = UserSerializer(data=request.data)
+    print(f'I am looking for trips for user with id {userid}')
+    print(f'I found {json}')
+
+    return HttpResponse(json)    
+
     
 class UserViewSet(viewsets.ModelViewSet):    
     """    
     API endpoint that allows users to be viewed or edited.    
     """    
     queryset = User.objects.all()    
-    serializer_class = UserSerializer
-
-    # @action(detail=True)
-    # def modules(self, request, pk=None):
-
-    #     user = self.get_object()
-    #     user_modules = User.objects.filter(user.userName=user)
-    #     serializer = ModuleSerializer(user_modules, many=True)
-    #     return Response(serializer.data)
-
-    
+    serializer_class = UserSerializer    
 
 class PlaceViewSet(viewsets.ModelViewSet):    
     """    

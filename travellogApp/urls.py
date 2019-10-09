@@ -12,10 +12,10 @@ router.register(r'trip', views.TripViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    # path('userbyname/<username>', )
     path("login", views.get_user),
     # path("username/", views.get_userbyname),
     path("username/<str:name>/", views.get_userbyname),
+    path("tripbyuserid/<int:userid>/", views.get_tripbyuserid),
     path('', include(router.urls)),
 ]
 
