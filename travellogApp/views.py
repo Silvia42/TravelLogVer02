@@ -35,12 +35,13 @@ def get_userbyname(request, name):
 # path("tripbyuserid/<int:userid>/", views.get_tripbyuserid),  
 def get_tripbyuserid(request, userid):
     queryset = Trip.objects.filter(user=userid)
-    json = JSONRenderer().render(UserSerializer(queryset, many=True).data)
-    #serializer = UserSerializer(data=request.data)
+    json = JSONRenderer().render(TripSerializer(queryset, many=True).data)
+    # # serializer = UserSerializer(data=request.data)
     print(f'I am looking for trips for user with id {userid}')
     print(f'I found {json}')
 
-    return HttpResponse(json)    
+    return HttpResponse(json)  
+    # return HttpResponse("<html><body>asdf</body></html>")      
 
     
 class UserViewSet(viewsets.ModelViewSet):    
