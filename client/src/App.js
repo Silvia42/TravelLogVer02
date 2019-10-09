@@ -34,6 +34,48 @@ const saveUserToServer = (newUser) =>
   ).then(res => res.json())
 
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////// class LoginUserForm  ////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+class LoginUserForm extends React.Component {
+
+  state = 
+  { userName: ""
+  , password: ""
+  }
+
+  handleInput = (evnt) => {
+    let logUser = {...this.state};
+    logUser[evnt.target.name] = evnt.target.value;
+    this.setState(logUser)
+  }
+
+  handleSubmit = (evnt) => {
+    evnt.preventDefault();
+    
+    // console.log('User was submitted',this.state)
+    if (this.state.password===this.state.password) {
+      this.props.setLoginUser({userName:this.state.userName})
+      this.setState({ password: "", userName: ""})
+    } else {
+      alert("You have entered an invalid username or password!!!")
+      this.setState({ password: "", userName: ""})
+    }
+    
+  }
+
+  render = () => (
+  <form onSubmit={this.handleSubmit}>
+    <input type="text"     name="userName"  onChange={this.handleInput} value={this.state.userName} placeholder="User Name"/>
+    <input type="password" name="password"  onChange={this.handleInput} value={this.state.password}  placeholder="Password"/>
+    <input type="submit"                    value="Sign In" />
+  </form>
+  )
+}
+//////////////////////// END OF class LoginUserForm  ///////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// class NewUserForm  //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 class NewUserForm extends React.Component {
@@ -97,9 +139,25 @@ class App extends React.Component {
        ,userId:''
        ,placeId:''
       }
+    ],
+    users:[
+      {id : 1
+    , userName: ""
+    , email   : ""
+    , password: ""
+      }
     ]
   }
   
+  setLoginUser = (logId) => {
+    this.setState({currentUserId:logId})
+    console.log('this user loged in:',logId)
+    // this.users.forEach(x => (x.id===logId) ? {
+    //   this.setState({currentUserName : x.userName})
+    //   this.setState({currentUserEmail : x.userEmail})
+    //   })
+  }
+
   addNewUser = (newUserInfo) => {
     newUserInfo=    {
         "userName": newUserInfo.userName
@@ -133,7 +191,8 @@ class App extends React.Component {
       <div className="userCorner">
         {/* {userInfo(testUsers[0])} */}
         {/* {newUserForm()} */}
-        <NewUserForm addNewUser={this.addNewUser}/>
+        {/* <NewUserForm addNewUser={this.addNewUser}/> */}
+        <LoginUserForm users={this.users} setLoginUser={this.setLoginUser}/>
         {/* {newPlaceForm()} */}
         {/* {newTripForm()} */}
       </div>

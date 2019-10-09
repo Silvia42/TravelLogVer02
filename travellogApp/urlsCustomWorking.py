@@ -18,4 +18,3 @@ urlpatterns = [
     path("username/<str:name>/", views.get_userbyname),
     path('', include(router.urls)),
 ]
-
