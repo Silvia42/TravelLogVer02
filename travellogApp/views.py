@@ -26,8 +26,8 @@ def get_userbyname(request, name):
     queryset = User.objects.filter(userName=name)
     json = JSONRenderer().render(UserSerializer(queryset, many=True).data)
     #serializer = UserSerializer(data=request.data)
-    print(f'I am looking for user by username {name}')
-    print(f'I found {json}')
+    # print(f'I am looking for user by username {name}')
+    # print(f'I found {json}')
 
     return HttpResponse(json)     
 
@@ -37,8 +37,8 @@ def get_tripbyuserid(request, userid):
     queryset = Trip.objects.filter(user=userid)
     json = JSONRenderer().render(TripSerializer(queryset, many=True).data)
     # # serializer = UserSerializer(data=request.data)
-    print(f'I am looking for trips for user with id {userid}')
-    print(f'I found {json}')
+    # print(f'I am looking for trips for user with id {userid}')
+    # print(f'I found {json}')
 
     return HttpResponse(json)  
     # return HttpResponse("<html><body>asdf</body></html>")      
