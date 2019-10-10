@@ -40,13 +40,20 @@ git add requirements.txt
 git add package.json 
 git add manage.py 
 
+..... add all files as usually for GitHub
+git status
+git commit -m "everything for heroku except db.sqlite3"
+git push origin master
+git push heroku master
+heroku open
+# doesn't work: Application error
 
-
-
-
-
-
-
+git add db.sqlite3 
+git commit -m "everything for heroku except db.sqlite3"
+git push origin master
+git push heroku master
+heroku open
+# doesn't work: Application error
 
 
 ___________________________________

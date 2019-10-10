@@ -1,2 +1,2 @@
 release: python3 manage.py migrate
-web: gunicorn travellogApp.wsgi --log-file -
+web: gunicorn travellog.wsgi --log-file -
