@@ -18,7 +18,41 @@ git commit -m "E pur si muove"
 
 git push origin master
 
+___________________________________
+HEROKU:
+cd /Users/silviakocsisovaCB5/Desktop/SEI/MyProjects/004.TravelLog/travellog
+
+heroku create
+
+ANSWER is: https://evening-tor-34882.herokuapp.com/ | https://git.heroku.com/evening-tor-34882.git
+Name manually changed to: my-travel-log
+terminal:
+git remote -v
+git remote rm heroku
+git remote -v
+heroku git:remote -a my-travel-log
+git remote -v
+
+heroku buildpacks:add --index 1 heroku/nodejs
+heroku buildpacks:add heroku/python
+git add Procfile
+git add requirements.txt
+git add package.json 
+git add manage.py 
 
 
+
+
+
+
+
+
+
+
+___________________________________
+
+
+
+___________________________________
 course-material/project-4/rubric.md
 You must meet all of the following requirements to pass project 3.
