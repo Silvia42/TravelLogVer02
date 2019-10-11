@@ -4,6 +4,7 @@ import './App.css';
 
 import LoginUserForm from './components/SignIn'
 import NewUserForm from './components/SignUp'
+import PlaceForm from './components/Place'
 
 const testUsers = 
   [ { id : 1
@@ -12,21 +13,12 @@ const testUsers =
     , password: "123"
     }
   ]  
-const testPlaces = 
-  [ {placeName: "test place 1", description: "bla bla bla", placeImageUrl:"qqq.com"}
-  , {placeName: "test place 2", description: "be be be be", placeImageUrl:"www.com"}
-  , {placeName: "test place 3", description: "foo foo foo", placeImageUrl:"foo.com"}
+
+const worldCountries = 
+  [ {placeName: "test place 1", description: "bla bla bla"}
+  , {placeName: "test place 2", description: "be be be be"}
+  , {placeName: "test place 3", description: "foo foo foo"}
   ]
-
-const placePreview = (place) => (
-  <li>{place.id} - {place.description}</li>
-)
-
-const placesList = (places) => (
-  <ul>
-    {places.map(placePreview)}
-  </ul>
-)
 
 const saveUserToServer = (newUser) => 
   fetch('/api/user/',
@@ -36,12 +28,16 @@ const saveUserToServer = (newUser) =>
     }
   ).then(res => res.json())
 
-
+  const getPlacesFromServer = () =>
+  fetch('/api/place/')
+    .then(res => res.json())
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// class App  //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 class App extends React.Component {
+
+
 
   state = {
       currentUserId: 0 // Nobody is Signed In
@@ -50,7 +46,6 @@ class App extends React.Component {
     , places: [
       { placeName:''
        ,description:''
-       ,placeImageUrl:''
       }
     ]
     , trips: [
@@ -66,6 +61,11 @@ class App extends React.Component {
     , password: ""
       }
     ]
+  }
+
+  componentDidMount() {
+    // this.getClassesFromServer()
+    this.setState({places: worldCountries})
   }
   
   setLoginUser = (logId) => {
@@ -104,13 +104,16 @@ class App extends React.Component {
       {/* <img src={require('/images/image-name.png')} /> */}
 
       <div className="dataArea">
-        {placesList(testPlaces)}
+        {/* {placesList(testPlaces)} */}
+        {/* <PlaceForm addNewUser={this.addNewUser}/> */}
+        {console.log(this.state.places)}
+        <PlaceForm worldCountries={this.state.places}/>
       </div>
 
       <div className="userCorner">
         {/* {userInfo(testUsers[0])} */}
         {/* {newUserForm()} */}
-        {/* <NewUserForm addNewUser={this.addNewUser}/> */}
+        <NewUserForm addNewUser={this.addNewUser}/>
         <LoginUserForm users={this.users} setLoginUser={this.setLoginUser}/>
         {/* {newPlaceForm()} */}
         {/* {newTripForm()} */}

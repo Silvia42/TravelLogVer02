@@ -49,16 +49,20 @@ heroku open
 # doesn't work: Application error
 
 git add db.sqlite3 
-git commit -m "everything for heroku except db.sqlite3"
+git commit -m "db.sqlite3 for heroku"
 git push origin master
 git push heroku master
 heroku open
 # doesn't work: Application error
 
-
+# Go on panel for Heroku - my-travel-log
+# DELETE Postgresql add-on
 ___________________________________
 
 
+Django on Heroku:
+https://my-travel-log.herokuapp.com/api/
+https://my-travel-log.herokuapp.com/api/place/
 
 ___________________________________
 course-material/project-4/rubric.md
