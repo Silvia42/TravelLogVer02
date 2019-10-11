@@ -29,8 +29,7 @@ handleSubmit = (evnt) => {
     } else {
     alert("Both passwords must be identical!!!")
     this.setState({ password1: "",password2: ""})
-    }
-    
+    } 
 }
 
 render = () => (

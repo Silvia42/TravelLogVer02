@@ -16,7 +16,7 @@ const placesList = (places) => (
 //   ,description:''
 //  }
 
-const showItem = (x) => (<option value={x.id}>{x.placeName}</option>)
+
 
 // {
 // return (
@@ -39,21 +39,33 @@ const showItem = (x) => (<option value={x.id}>{x.placeName}</option>)
 ////////////////////////// class PlaceForm  ////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 export default class PlaceForm extends React.Component {
+
+
+    handleSubmit = (evnt) => {
+        evnt.preventDefault();
+        // console.log('something')
+        
+        alert("Button was ...!!!") 
+    }
   
+    showItem = (x) => (<option value={x.id}>{x.placeName}</option>)
+
     render = () => (
         <div>
-            {/* <form onSubmit={this.handleSubmit}> */}
+            <form onSubmit={this.handleSubmit}>
 
             {/* <select value={0} onChange={(evnt) => console.log(evnt.target.value)}>  */}
             <select name="place">    
             <option value ="none">Nothing</option>
-                {this.props.worldCountries.map(showItem)}
+                {this.props.worldCountries.map(this.showItem)}
             </select>
 
                 {/* {console.log('worldCountries',this.props.worldCountries)} */}
                 {/* <p>{this.props.worldCountries.map(showItem)}</p>  */}
                 
-            {/* </form> */}
+
+            <input type="submit"                    value="Add this trip" />
+            </form>
             </div>
     )
   }
