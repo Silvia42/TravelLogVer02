@@ -41,6 +41,7 @@ const placesList = (places) => (
 export default class PlaceForm extends React.Component {
 
 
+
     handleSubmit = (evnt) => {
         evnt.preventDefault();
         // console.log('something')
@@ -63,7 +64,7 @@ export default class PlaceForm extends React.Component {
                 {/* {console.log('worldCountries',this.props.worldCountries)} */}
                 {/* <p>{this.props.worldCountries.map(showItem)}</p>  */}
                 
-
+            <input type="date"  name="date"    onChange={this.handleInput}/>
             <input type="submit"                    value="Add this trip" />
             </form>
             </div>
