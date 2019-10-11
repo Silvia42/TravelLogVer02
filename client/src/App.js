@@ -6,6 +6,7 @@ import LoginUserForm from './components/SignIn'
 import NewUserForm from './components/SignUp'
 import PlaceForm from './components/Place'
 
+
 const testUsers = 
   [ { id : 1
     , userName: "BooBoo"
@@ -28,7 +29,7 @@ class App extends React.Component {
 
 
   state = {
-      currentUserId: 0 // Nobody is Signed In
+      currentUserId: 1 // 0=Nobody is Signed In
     , currentUserName:''
     , currentUserEmail:''
     , places: [
@@ -112,7 +113,7 @@ class App extends React.Component {
         {/* {placesList(testPlaces)} */}
         {/* <PlaceForm addNewUser={this.addNewUser}/> */}
         {console.log(this.state.places)}
-        <PlaceForm worldCountries={this.state.places}/>
+        <PlaceForm worldCountries={this.state.places} currentUserId={this.state.currentUserId}/>
       </div>
 
       <div className="userCorner">
