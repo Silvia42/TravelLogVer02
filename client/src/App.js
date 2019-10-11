@@ -20,18 +20,6 @@ const worldCountries =
   , {placeName: "test place 3", description: "foo foo foo"}
   ]
 
-const saveUserToServer = (newUser) => 
-  fetch('/api/user/',
-    { method  : "POST"
-    , headers : { "Content-Type": "application/json" }
-    , body    : JSON.stringify(newUser)
-    }
-  ).then(res => res.json())
-
-  const getPlacesFromServer = () =>
-  fetch('/api/place/')
-    .then(res => res.json())
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// class App  //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +53,26 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.getClassesFromServer()
-    this.setState({places: worldCountries})
+    this.getPlacesFromServer()
+    // this.setState({places: worldCountries})
   }
   
+  saveUserToServer = (newUser) => 
+    fetch('/api/user/',
+      { method  : "POST"
+      , headers : { "Content-Type": "application/json" }
+      , body    : JSON.stringify(newUser)
+      }
+    ).then(res => res.json())
+
+  getPlacesFromServer = () =>
+    fetch('/api/place/')
+      .then(res => res.json())
+      //.then(res => res.json()).then(console.log)
+      .then(listOfPlaces => {
+        this.setState({places : listOfPlaces})
+      })
+
   setLoginUser = (logId) => {
     this.setState({currentUserId:logId})
     console.log('this user loged in:',logId)
@@ -84,7 +89,7 @@ class App extends React.Component {
         , "password": newUserInfo.password
     } 
     // console.log('before saveUserToServer',newUserInfo)  
-    saveUserToServer(newUserInfo)
+    this.saveUserToServer(newUserInfo)
       .then(newUser => {
         // console.log(newUser);
         // let users = {...this.state.users};
