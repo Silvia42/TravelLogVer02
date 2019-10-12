@@ -19,6 +19,9 @@ git commit -m "E pur si muove"
 git push origin master
 
 ___________________________________
+git push heroku master
+___________________________________
+
 HEROKU:
 cd /Users/silviakocsisovaCB5/Desktop/SEI/MyProjects/004.TravelLog/travellog
 

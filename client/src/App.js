@@ -5,7 +5,7 @@ import './App.css';
 import LoginUserForm from './components/SignIn'
 import NewUserForm from './components/SignUp'
 import PlaceForm from './components/Place'
-
+import TripList from './components/TripList'
 
 const testUsers = 
   [ { id : 1
@@ -112,7 +112,7 @@ class App extends React.Component {
       <div className="dataArea">
         {/* {placesList(testPlaces)} */}
         {/* <PlaceForm addNewUser={this.addNewUser}/> */}
-        {console.log(this.state.places)}
+        {/* {console.log(this.state.places)} */}
         <PlaceForm worldCountries={this.state.places} currentUserId={this.state.currentUserId}/>
       </div>
 
@@ -130,7 +130,11 @@ class App extends React.Component {
     <div className="mapContainer">
     Place for big MAP
       {/* <img src={require("./images/choroplethUSA.png")} alt="Globe" width="100%"/> */}
-      <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/>
+      {/* <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/> */}
+
+      
+      <TripList currentUserId={this.state.currentUserId}/>
+
     </div>
   </div>
   )
