@@ -52,11 +52,11 @@ export default class PlaceForm extends React.Component {
     }
 
     saveTripToServer = (newTrip) => 
-    fetch('/api/trip/',
-      { method  : "POST"
-      , headers : { "Content-Type": "application/json" }
-      , body    : JSON.stringify(newTrip)
-      }
+        fetch('/api/trip/',
+        { method  : "POST"
+        , headers : { "Content-Type": "application/json" }
+        , body    : JSON.stringify(newTrip)
+        }
     ).then(res => res.json())
 
 

@@ -29,31 +29,24 @@ class App extends React.Component {
 
 
   state = {
-      currentUserId: 1 // 0=Nobody is Signed In
-    , currentUserName:''
+      currentUserId: 2 // 0=Nobody is Signed In
+    , currentUserName:'Foo Bar'
     , currentUserEmail:''
     , places: [
       { placeName:''
        ,description:''
       }
-    ]
-    , trips: [
-      { tripDate:''
-       ,userId:''
-       ,placeId:''
-      }
     ],
-    users:[
-      {id : 1
-    , userName: ""
-    , email   : ""
-    , password: ""
-      }
-    ]
+    // users:[
+    //   {id : 1
+    // , userName: ""
+    // , email   : ""
+    // , password: ""
+    //   }
+    // ]
   }
 
   componentDidMount() {
-    // this.getClassesFromServer()
     this.getPlacesFromServer()
     // this.setState({places: worldCountries})
   }
@@ -133,7 +126,8 @@ class App extends React.Component {
       {/* <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/> */}
 
       
-      <TripList currentUserId={this.state.currentUserId}/>
+      <TripList currentUserId={this.state.currentUserId}
+              currentUserName={this.state.currentUserName}/>
 
     </div>
   </div>
