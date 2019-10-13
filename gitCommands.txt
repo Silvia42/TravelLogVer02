@@ -11,6 +11,7 @@ git add readme.md
 git add Documentation/
 git add HelperPrograms/
 git add gitCommands.txt 
+git add dbCommands.txt
 
 git status
 

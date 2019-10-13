@@ -29,7 +29,7 @@ class App extends React.Component {
 
 
   state = {
-      currentUserId: 2 // 0=Nobody is Signed In
+      currentUserId: 4 // 0=Nobody is Signed In
     , currentUserName:'Foo Bar'
     , currentUserEmail:''
     , places: [
@@ -106,13 +106,23 @@ class App extends React.Component {
         this.setState({places : listOfPlaces})
       })
 
+  // getTripsFromServer for all Users      
+  // getTripsFromServer = () =>
+  //   fetch('/api/trip/')
+  //       .then(res => res.json())
+  //       //.then(res => res.json()).then(console.log)
+  //       .then(listOfTrips => {
+  //           this.setState({trips : listOfTrips})
+  //     })
+
+  // Only for current User:  http://localhost:8000/api/tripbyuserid/3/  
   getTripsFromServer = () =>
-    fetch('/api/trip/')
+    fetch('/api/tripbyuserid/'+this.state.currentUserId.toString()+'/')
         .then(res => res.json())
         //.then(res => res.json()).then(console.log)
         .then(listOfTrips => {
             this.setState({trips : listOfTrips})
-      })
+      })    
 
   setLoginUser = (logId) => {
     this.setState({currentUserId:logId})

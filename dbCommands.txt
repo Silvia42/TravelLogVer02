@@ -1,0 +1,13 @@
+Commands for DB Browser for SQLite
+(tested and they are working)
+After query executed successfully,
+I have to save db: 
+FILE / Write Channges
+
+
+DELETE FROM travellogApp_trip
+
+
+
+
+
