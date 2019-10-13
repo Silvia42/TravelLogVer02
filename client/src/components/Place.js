@@ -61,9 +61,10 @@ export default class PlaceForm extends React.Component {
 
 
     addNewTrip = (trip) => {
-        console.log('I want save on server:', 
-            {"user":this.props.currentUserId,...trip})
+        // console.log('I want save on server:',{"user":this.props.currentUserId,...trip})
         this.saveTripToServer({...trip, "user": this.props.currentUserId})
+        .then(this.props.callback42({var42: Math.random(42),...trip }))
+
         //   .then(newIssue => {
         //     let users = {...this.state.users};
         //     users[this.state.currentUser].issues.push(newIssue);
@@ -77,10 +78,13 @@ export default class PlaceForm extends React.Component {
 
     handleSubmit = (evnt) => {
         evnt.preventDefault();
-        console.log('From form I got: ',this.state)
+        // console.log('From form I got: ',this.state)
         this.addNewTrip(this.state)
         alert("Button was ...!!!") 
         this.setState({ place: 0, date:new Date().toISOString().slice(0,10)})
+        // .then(this.props.callbackFromPlace)
+        // .then(this.props.callback42({var42: Math.random(42)}))
+        // this.props.action('Set Parent state set from child: ' + Math.floor(Math.random() * 999))
     }
   
     showItem = (x) => (<option value={x.id}>{x.placeName}</option>)

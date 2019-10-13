@@ -37,6 +37,14 @@ class App extends React.Component {
        ,description:''
       }
     ],
+    trips: [
+      {
+      tripDate: '2019',
+      user: 0,
+      place: 0
+      }
+    ],
+    var42:0, // used for solving callbackFromPlace
     // users:[
     //   {id : 1
     // , userName: ""
@@ -46,8 +54,39 @@ class App extends React.Component {
     // ]
   }
 
+  callback42 = (data) => {
+    // console.log(data)
+    // console.log(data)
+    this.setState({"var42":data.var42})
+    let t=[...this.state.trips]
+    
+    // console.log('tttt',t)
+    t.push({"user":this.state.currentUserId, 
+            "tripDate":data.tripDate,
+            "place":parseInt(data.place)
+          })
+    // t.push(data)
+    this.setState({"trips":t})
+    // console.log('42',this.state.trips)
+    // this.setState(
+    //   {"trips": [
+    //     {
+    //     tripDate: '2019',
+    //     user: 0,
+    //     place: 0
+    //     }]}
+    // )
+
+  }
+
+  // callbackFromPlace = () => {
+  //   // this.setState({trips: childData})
+  //   this.getTripsFromServer()
+  // }
+
   componentDidMount() {
     this.getPlacesFromServer()
+    .then(this.getTripsFromServer())
     // this.setState({places: worldCountries})
   }
   
@@ -67,9 +106,17 @@ class App extends React.Component {
         this.setState({places : listOfPlaces})
       })
 
+  getTripsFromServer = () =>
+    fetch('/api/trip/')
+        .then(res => res.json())
+        //.then(res => res.json()).then(console.log)
+        .then(listOfTrips => {
+            this.setState({trips : listOfTrips})
+      })
+
   setLoginUser = (logId) => {
     this.setState({currentUserId:logId})
-    console.log('this user loged in:',logId)
+    // console.log('this user loged in:',logId)
     // this.users.forEach(x => (x.id===logId) ? {
     //   this.setState({currentUserName : x.userName})
     //   this.setState({currentUserEmail : x.userEmail})
@@ -106,7 +153,12 @@ class App extends React.Component {
         {/* {placesList(testPlaces)} */}
         {/* <PlaceForm addNewUser={this.addNewUser}/> */}
         {/* {console.log(this.state.places)} */}
-        <PlaceForm worldCountries={this.state.places} currentUserId={this.state.currentUserId}/>
+        <PlaceForm worldCountries={this.state.places} 
+                   currentUserId={this.state.currentUserId}
+                  //  callbackFromPlace={this.callbackFromPlace}
+                   callback42={this.callback42}
+                  // Child action={this.childHandler}
+                   />
       </div>
 
       <div className="userCorner">
@@ -121,13 +173,18 @@ class App extends React.Component {
     </div>
 
     <div className="mapContainer">
-    Place for big MAP
+    Place for big MAP 
+    {/* {this.state.var42} */}
       {/* <img src={require("./images/choroplethUSA.png")} alt="Globe" width="100%"/> */}
       {/* <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/> */}
 
       
       <TripList currentUserId={this.state.currentUserId}
-              currentUserName={this.state.currentUserName}/>
+              currentUserName={this.state.currentUserName}
+              worldCountries={this.state.places} 
+              trips={this.state.trips}
+              var42={this.state.var42}
+              />
 
     </div>
   </div>
