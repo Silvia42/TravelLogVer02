@@ -63,7 +63,7 @@ Scratch Off World Map
 <ul>
 <li><a href="https://github.com/Silvia42/TravelLog/projects/1">Project Board</a></li>
 
-<li><a href="https://mycodebank.herokuapp.com">Travel Log Bank on Heroku</a></li>
+<li><a href="https://my-travel-log.herokuapp.com/">Travel Log Bank on Heroku</a></li>
 
 </ul>
 <br>
