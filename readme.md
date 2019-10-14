@@ -44,11 +44,19 @@ Scratch Off World Map
  
 
 #### DB Schema:
-<img src="./Documentation/Images/dbSchema01.png" alt="Schema Travel Log">
+<img src="./Documentation/Images/ERD.png" alt="Schema Travel Log">
 
 #### Component Hierarchy:
-<img src="./Documentation/Images/ComponentHierarchy001v01.png" alt="Schema Travel Log
+<img src="./Documentation/Images/ComponentTree.png" alt="Component Tree
 "  width="600">
+
+#### Wire Frame:
+<img src="./Documentation/Images/WireFrame.png" alt="Wire Frame Travel Log" width="600">
+
+#### CODE Snippet for Seeding data via Node.js:
+<img src="./Documentation/Images/ScreenShot001.png" alt="CodeSnippet">
+<img src="./Documentation/Images/ScreenShot002.png" alt="CodeSnippet">
+<img src="./Documentation/Images/ScreenShot003.png" alt="CodeSnippet" width="700">
 
 ## Links related to this project:
 
