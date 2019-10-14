@@ -13,6 +13,8 @@ import json
 #    print(my_list) 
 #    print(my_json_string)  
 
+
+
 fileName='worldCountries.txt'
 
 lineList = [line.rstrip('\n') for line in open(fileName)]

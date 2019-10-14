@@ -21,19 +21,26 @@ const worldCountries =
   , {placeName: "test place 3", description: "foo foo foo"}
   ]
 
+  const objectFromListById=(places) =>
+    places.reduce((obj,plc) => {
+      obj[plc.id] = plc;
+      return obj
+    },{})
+    
+////////////////////////////////// console.log('wcObject',wcObject["531"])
+  
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// class App  //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 class App extends React.Component {
 
-
-
   state = {
-      currentUserId: 4 // 0=Nobody is Signed In
+      currentUserId: 2 // 0=Nobody is Signed In
     , currentUserName:'Foo Bar'
     , currentUserEmail:''
     , places: [
-      { id:1 
+      { id:1
        ,placeName:''
        ,description:''
       }
@@ -104,6 +111,8 @@ class App extends React.Component {
       .then(res => res.json())
       //.then(res => res.json()).then(console.log)
       .then(listOfPlaces => {
+        this.setState({wcPlaces:objectFromListById(listOfPlaces), places : listOfPlaces})
+        // .then(places => this.setState({wcPlaces:objectFromListById(places)}))
         this.setState({places : listOfPlaces})
       })
 
@@ -116,13 +125,6 @@ class App extends React.Component {
   //           this.setState({trips : listOfTrips})
   //     })
 
-  findCountryName=(x) => {
-    let c=[...this.state.places]
-    let d=c.filter(y=>y.id===x.place)
-    console.log('dddddd',d)
-    return d
-  }  
-
   // Only for current User:  http://localhost:8000/api/tripbyuserid/3/  
   getTripsFromServer = () =>
     fetch('/api/tripbyuserid/'+this.state.currentUserId.toString()+'/')
@@ -130,8 +132,8 @@ class App extends React.Component {
         //.then(res => res.json()).then(console.log)
         .then(listOfTrips => {
             this.setState({trips : listOfTrips})
-      })
-      
+      })    
+
   setLoginUser = (logId) => {
     this.setState({currentUserId:logId})
     // console.log('this user loged in:',logId)
@@ -157,6 +159,20 @@ class App extends React.Component {
     })
   }
 
+  makeWCObject() {
+    let wc=[...this.state.places]  
+    //console.log('trips',this.props.trips)
+    // let wcNewKeys=wc.map(x => x.id.toString())
+    let wcNewKeys=wc.map(x => x.id)
+    let wcObject={}
+    for (let i=0;i<wc.length;i++) {
+        wcObject[wcNewKeys[i]]={"placeName":wc[i].placeName
+                               ,"description":wc[i].description}
+    return wcObject 
+    }
+    // console.log('wcObject',wcObject["531"])
+} 
+
   render = () => (
   <div>
     <div className="topPageInfo">
@@ -173,7 +189,6 @@ class App extends React.Component {
         {/* {console.log(this.state.places)} */}
         <PlaceForm worldCountries={this.state.places} 
                    currentUserId={this.state.currentUserId}
-                   currentUserName={this.state.currentUserName}
                   //  callbackFromPlace={this.callbackFromPlace}
                    callback42={this.callback42}
                   // Child action={this.childHandler}
@@ -192,7 +207,7 @@ class App extends React.Component {
     </div>
 
     <div className="mapContainer">
-    WORLD MAP 
+    Place for big MAP 
     {/* {this.state.var42} */}
       {/* <img src={require("./images/choroplethUSA.png")} alt="Globe" width="100%"/> */}
       {/* <img src={require("./images/choroplethWorld.png")} alt="Globe" width="100%"/> */}
@@ -203,8 +218,11 @@ class App extends React.Component {
               worldCountries={this.state.places} 
               trips={this.state.trips}
               var42={this.state.var42}
+              // wcObject={this.makeWCObject()}
+              // wcObject={objectFromListById(this.state.places)}
+              wcObject={this.state.wcPlaces}
               />
-
+              {/* {console.log('AppApp',objectFromListById(this.state.places))} */}
     </div>
   </div>
   )

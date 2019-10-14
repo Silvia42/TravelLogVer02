@@ -79,8 +79,11 @@ export default class PlaceForm extends React.Component {
     handleSubmit = (evnt) => {
         evnt.preventDefault();
         // console.log('From form I got: ',this.state)
-        this.addNewTrip(this.state)
-        alert("Button was ...!!!") 
+        if (this.state.place)
+        {this.addNewTrip(this.state)
+        }else{
+        alert("Country must be selected!!!") 
+        } 
         this.setState({ place: 0, date:new Date().toISOString().slice(0,10)})
         // .then(this.props.callbackFromPlace)
         // .then(this.props.callback42({var42: Math.random(42)}))
@@ -97,14 +100,15 @@ export default class PlaceForm extends React.Component {
             <select name="place" value={this.state.place} onChange={this.handleInput}>   
             {/* {console.log(this.state.place)}  */}
             {/* {this.state.place} */}
-                <option value = {0}>Nothing</option>
+                <option value = {0}>Choose country</option>
                 {this.props.worldCountries.map(this.showItem)}
             </select>
                 {/* {console.log('worldCountries',this.props.worldCountries)} */}
                 {/* <p>{this.props.worldCountries.map(showItem)}</p>  */}  
             <input type="date"  name="tripDate"  value={this.state.date}   onChange={this.handleInput}/>
             <input type="submit"                    value="Add this trip" />
-            <h4>Current user is: {this.props.currentUserId}</h4>
+            {/* <h4>Current user is: {this.props.currentUserId}</h4> */}
+            <h4>Current user is: {this.props.currentUserName}</h4>
             </form>
         </div>
     )

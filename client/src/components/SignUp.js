@@ -23,11 +23,11 @@ handleInput = (evnt) => {
 handleSubmit = (evnt) => {
     evnt.preventDefault();
     // console.log('User was submitted',this.state)
-    if (this.state.password1===this.state.password2) {
+    if (this.state.password1===this.state.password2 && this.state.password1) {
     this.props.addNewUser({userName:this.state.userName,email:this.state.email,password:this.state.password1})
     this.setState({ userName: "", email: "", password1: "",password2: ""})
     } else {
-    alert("Both passwords must be identical!!!")
+    alert("Both passwords must be identical and NOT empty!")
     this.setState({ password1: "",password2: ""})
     } 
 }

@@ -68,14 +68,17 @@ const allPlaces=getPlaces()
 //////////////////////////// CLEAN CODE //////////////////////
 //////////////////////////////////////////////////////////////
 // SAVE all records from list listPlaces on DB on Server
-listPlaces.reduce((q, place) => q.then(() => savePlacesToServer(place)), Promise.resolve(null))
+listPlaces.reduce((q, place) => 
+                   q.then(() => savePlacesToServer(place)), 
+                                Promise.resolve(null))
 //////////////////////////////////////////////////////////////
 // DELETE all records from DB on Server
 // const allPlaces=getPlaces()
 //       .then(
 //             (z=>z.reduce((q, y) => 
 //                           q.then(() =>
-//                               deletePlacesFromDB(y.id)),Promise.resolve(null)
+//                               deletePlacesFromDB(y.id)),
+//                               Promise.resolve(null)
 //                         )
 //             )
 //             )
