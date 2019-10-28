@@ -21,6 +21,10 @@ git push origin master
 ___________________________________
 git push heroku master
 ___________________________________
+How to change github repo address:
+
+git remote set-url origin https://github.com/Silvia42/TravelLogVer02.git
+___________________________________
 
 HEROKU:
 cd /Users/silviakocsisovaCB5/Desktop/SEI/MyProjects/004.TravelLog/travellog

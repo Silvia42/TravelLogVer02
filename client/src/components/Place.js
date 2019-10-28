@@ -61,8 +61,8 @@ export default class PlaceForm extends React.Component {
 
 
     addNewTrip = (trip) => {
-        // console.log('I want save on server:',{"user":this.props.currentUserId,...trip})
-        this.saveTripToServer({...trip, "user": this.props.currentUserId})
+        console.log('I want save on server:',{"user":this.props.currentUserId,...trip})
+        this.saveTripToServer({"user": this.props.currentUserId,...trip})
         .then(this.props.callback42({var42: Math.random(42),...trip }))
 
         //   .then(newIssue => {
@@ -78,7 +78,7 @@ export default class PlaceForm extends React.Component {
 
     handleSubmit = (evnt) => {
         evnt.preventDefault();
-        // console.log('From form I got: ',this.state)
+        console.log('From form I got: ',this.state)
         if (this.state.place)
         {this.addNewTrip(this.state)
         }else{
@@ -115,6 +115,6 @@ export default class PlaceForm extends React.Component {
   }
   //////////////////////// END OF class PlaceForm  ///////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  
+
   
   

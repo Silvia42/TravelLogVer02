@@ -9,7 +9,7 @@ import '../App.css';
 
 export default class TripList extends React.Component {
     state = {
-        wcObject : null
+        wcObject : [] //null
       }
 
 objectFromListById=(places) =>
@@ -20,8 +20,8 @@ objectFromListById=(places) =>
 
 componentDidMount() {
     let wc=this.props.worldCountries
-    let b= (wc != undefined) ? 
-           this.objectFromListById(wc) : null
+    let b = wc ? 
+           this.objectFromListById(wc) : []
     this.setState({"wcObject":b})
     console.log('fffff',this.state.wcObject)
     }
