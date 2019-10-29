@@ -32,9 +32,10 @@ componentDidMount() {
 showTrip = (x) => (<h5>{x.place} visited in {x.tripDate.slice(0,4)} </h5>)
 
 showTripWithPlaceName = (x) => {
-    console.log(this.state.wcObject ? this.state.wcObject : null)
-    // return (<h5>{this.state.wcObject[x.place].placeName} 
-    //         VISITED IN {x.tripDate.slice(0,4)} </h5>)
+    console.log('TTTTT',this.state.wcObject ? this.state.wcObject : null)
+    console.log('TTTT2',this.props.worldCountries ? this.props.worldCountries : null)
+    return (<h5>{this.props.worldCountries[x.place].placeName} 
+            VISITED IN {x.tripDate.slice(0,4)} </h5>)
 }
 
 render = () => (
@@ -51,7 +52,8 @@ render = () => (
 
         {this.state.wcObject ? this.props.trips.map(this.showTripWithPlaceName) : null}
 
-
+        {this.props.worldCountries ? this.props.trips.map(this.showTripWithPlaceName) : null}
+        
 
         </div>
   )
